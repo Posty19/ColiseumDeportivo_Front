@@ -8,6 +8,7 @@ function App() {
       personajes
       contacto
       signIn/Cuenta
+      NotFound 404
       dashboard => protegidas
         dashboard home
         CRUD articulos
@@ -20,7 +21,9 @@ function App() {
 
     components:
       formulario
-      card
+      card 
+        contenido
+        errores => modal
       content => pensar nombre mejor
         notable?
         article?
