@@ -1,6 +1,17 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import { GlobalProvider } from "./contexts/GlobalContext/GlobalContext";
+
+import HomeLayout from "./layouts/HomeLayout/HomeLayout";
+
+import DashBoardLayout from "./layouts/DashboardLayout/DasboardLayout";
+import DashboardUsers from "./views/DashboardUsers/DashboardUsers";
+import DashboardArticles from "./views/DashboardArticles/DashboardArticles";
+import DashboardNotables from "./views/DashboardNotables/DashboardNotables";
+
+import "./App.css";
 
 function App() {
-
   /*  
     rutas:
       home
@@ -21,6 +32,8 @@ function App() {
 
     components:
       formulario
+        input
+        button
       card 
         contenido
         errores => modal
@@ -37,10 +50,19 @@ function App() {
   */
 
   return (
-    <>
-      
-    </>
-  )
+      <GlobalProvider>
+        <BrowserRouter>
+          <Route element={<HomeLayout />}>
+            {/* comentario para evitar que el formateo automatico de problemas */}
+          </Route>
+          <Route path="/dashboard" element={<DashBoardLayout />}>
+            <Route path="Users" element={<DashboardUsers />} />
+            <Route path="Articles" element={<DashboardArticles />} />
+            <Route path="Notables" element={<DashboardNotables />} />
+          </Route>
+        </BrowserRouter>
+      </GlobalProvider>
+  );
 }
 
-export default App
+export default App;
