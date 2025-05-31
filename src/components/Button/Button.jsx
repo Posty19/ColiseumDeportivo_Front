@@ -1,14 +1,12 @@
-import { useContext } from 'react';
 
 import './Button.css'
-import { GlobalContext } from '../../contexts/GlobalContext/GlobalContext';
 
-const Button=({/* id, */type,/* dataType, */fn})=>{
+const Button=({type,fn,disabled = false,txt})=>{
 
-    const {dispatch} = useContext(GlobalContext);
     return <button 
+        disabled={disabled}
         className={type}
-        onClick={()=>dispatch({type:fn})}
-    >{type}</button>
+        onClick={fn}
+    >{txt}</button>
 }
 export default Button;

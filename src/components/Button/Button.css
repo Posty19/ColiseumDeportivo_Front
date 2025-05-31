@@ -1,14 +1,14 @@
-.update{
+.update,.save,.submit{
     background-color: green;
     transition: background-color .5s;
 }
-.update:hover{
+.update:hover,.save:hover,.submit:hover{
     background-color: rgb(35, 185, 35)
 }
-.delete{
+.delete,.cancel{
     background-color: red;
     transition: background-color .5s;
 }
-.delete:hover{
+.delete:hover,.cancel:hover{
     background-color: rgb(248, 64, 64);
 }
