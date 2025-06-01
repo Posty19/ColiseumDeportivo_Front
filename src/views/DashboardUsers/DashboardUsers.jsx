@@ -28,9 +28,6 @@ const deleteUser = async (userId) => {
 };
 
 const DashboardUsers = ({ children }) => {
-  /*
-        U => boton => form => reimprimir
-    */
   let table;
   const [newForm, setViewNew] = useState(false);
   const viewNewForm = () => setViewNew((prev) => !prev);
@@ -81,7 +78,7 @@ const DashboardUsers = ({ children }) => {
       setTimeout(() => {
         queryClient.refetchQueries({ queryKey: ["users"] });
       }, 500);
-      updateView(false)
+      updateView(false);
     },
   });
 

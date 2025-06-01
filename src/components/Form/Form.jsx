@@ -10,21 +10,35 @@ const forms = {
     { type: "email", name: "email", placeHolder: "Correo electrónico" },
     { type: "password", name: "password", placeHolder: "Contraseña" },
   ],
+  article: [
+    { type: "text", name: "title", placeHolder: "Títlulo" },
+    { type: "text", name: "subTitle", placeHolder: "Subtítulo" },
+    { type: "file", name: "file", placeHolder: "Imagen del artículo" },
+  ],
+  notable:[
+    { type: "text", name: "name", placeHolder: "Nombre" },
+
+    { type: "file", name: "file", placeHolder: "Imagen del personaje" },
+  ]
 };
 const formsWihtoutCancel = ["contact"];
 
 const Form = ({ children, type, fn, onSubmit, updtElement }) => {
   const [formData, setData] = useState({});
+  const [txtAreaName, setTxtAreaName] = useState("");
 
   useEffect(() => {
     if (updtElement) {
       setData(updtElement);
     }
-  }, [updtElement]);
+    if (type === "article" || type === "coment") {
+      setTxtAreaName("content");
+    } else if (type === "notable") setTxtAreaName("description");
+  }, [updtElement, txtAreaName, type]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prev) => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target;
+    setData((prev) => ({ ...prev, [name]: e.target.type==='file'?files[0] :value }));
   };
 
   const handleSubmit = (e) => {
@@ -33,19 +47,37 @@ const Form = ({ children, type, fn, onSubmit, updtElement }) => {
   };
 
   return (
-    <form action="" onSubmit={handleSubmit}>
+    <form action="" onSubmit={handleSubmit} className={type}>
       {forms[type].map((fieldAttrs) => (
         <Field
           atrs={fieldAttrs}
           key={fieldAttrs.name}
           value={formData[fieldAttrs.name] || ""}
           change={handleChange}
+          
         >
           {children}
         </Field>
       ))}
+
+      {type === "article" || type === "coment" || type === "notable" ? (
+        <textarea
+          name={txtAreaName}
+          placeholder={
+            type === "coment"
+              ? "Escriba su comentario"
+              : "Zona de texto para el contenido"
+          }
+          onChange={handleChange}
+        ></textarea>
+      ) : null}
+
       {type === "user" ? (
-        <select name="role" onChange={handleChange} value={formData['role'] || ""}>
+        <select
+          name="role"
+          onChange={handleChange}
+          value={formData["role"] || ""}
+        >
           {type === "user" ? <option value="">Selecciona un rol</option> : null}
           <option value="admin">Admin</option>
           <option value="user">Usuario comun</option>

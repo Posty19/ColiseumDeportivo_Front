@@ -1,28 +1,13 @@
-import {  createContext, useReducer,/* useMemo */ } from "react";
+import {  createContext, useState,/* useMemo */ } from "react";
 
 export const GlobalContext = createContext();
 
-const initialValue = {
-    newUser:false,
-}
-
-const reducer = (state,action)=>{
-    switch (action.type){
-        case 'newUser':
-            console.log('cambio user');
-            return {...state,newUser:!state.newUser};
-        default:
-            return state = {
-                newUser:false
-            };
-
-    }
-}
-
 export const GlobalProvider = ({children})=>{
 
+    const [user,setUser] = useState([]);
 
-    const [state,dispatch] = useReducer(reducer,initialValue)
+    const saveUser = (usu)=>setUser(usu);
+
 
     /*
         views
@@ -33,7 +18,7 @@ export const GlobalProvider = ({children})=>{
     */
 
     return(
-        <GlobalContext.Provider value={{state,dispatch}}>
+        <GlobalContext.Provider value={{user,saveUser}}>
             {children}
         </GlobalContext.Provider>
     )

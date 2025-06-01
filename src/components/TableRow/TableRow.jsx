@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
+
 import TableData from "../TableData/TableData";
 import Button from "../Button/Button";
 
-const TableRow = ({ row, dataType, fns,children }) => {
+const TableRow = ({ row, dataType, fns, children }) => {
   const [view, setview] = useState(false);
 
   useEffect(() => {
@@ -11,7 +12,15 @@ const TableRow = ({ row, dataType, fns,children }) => {
     } else () => setview(false);
   }, [row.role]);
 
-  const fields = ["name", "lastName", "email", "role", "status"];
+  const fields = [
+    "name",
+    "lastName",
+    "email",
+    "role",
+    "status",
+    "title",
+    "subTitle",
+  ];
   return (
     <tr>
       {Object.entries(row).map(([key, value]) => {
@@ -21,13 +30,14 @@ const TableRow = ({ row, dataType, fns,children }) => {
           </TableData>
         ) : null;
       })}
+
       <td>
         <Button
-            type={"update"}
-            txt="Actualizar"
-            dataType={dataType}
-            fn={()=>fns.update(row._id || row.id)}
-          />
+          type={"update"}
+          txt="Actualizar"
+          dataType={dataType}
+          fn={() => fns.update(row._id || row.id)}
+        />
       </td>
       <td>
         <Button

@@ -1,4 +1,5 @@
 const Field = ({ atrs, change, value }) => {
+  const isFile = atrs.type === "file";
   return (
     <div className="formField">
       <label htmlFor={atrs.name}>{atrs.placeHolder}</label>
@@ -8,7 +9,7 @@ const Field = ({ atrs, change, value }) => {
         placeholder={atrs.placeHolder}
         name={atrs.name}
         onChange={change}
-        value={value?value:''}
+        {...(!isFile && { value: value || "" })}
       />
     </div>
   );
