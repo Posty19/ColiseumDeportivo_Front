@@ -28,7 +28,7 @@ const saveArticle = async (article) => {
 
 const updateArticle = async (article) => {
   const res = await axiosInstance.put(
-    `/articles/update/${article.id}`,
+    `/articles/update/${article._id}`,
     article.data
   );
   return res;
@@ -60,7 +60,6 @@ const DashboardArticles = ({ children }) => {
     queryFn: getArticles,
     stateTime: 0,
   });
-  console.log(data);
 
   const queryClient = useQueryClient();
   const newArticle = useMutation({
@@ -72,7 +71,7 @@ const DashboardArticles = ({ children }) => {
       }, 500);
       setViewNew(false);
     },
-    onError: (error) => console.log("Error al crear el usuario", error),
+    onError: (error) => console.log("Error al crear el articulo", error),
   });
   const changeArticle = useMutation({
     mutationFn: updateArticle,
@@ -81,9 +80,9 @@ const DashboardArticles = ({ children }) => {
       setTimeout(() => {
         queryClient.refetchQueries({ queryKey: ["articles"] });
       }, 500);
-      setViewNew(false);
+      updateView(false);
     },
-    onError: (error) => console.log("Error al crear el usuario", error),
+    onError: (error) => console.log("Error al actualizar el articulo", error),
   });
   const uploadFile = useMutation({
     mutationFn: saveFile,
@@ -94,10 +93,10 @@ const DashboardArticles = ({ children }) => {
       }, 500);
       updateView(false);
     },
-    onError: (error) => console.log("Error al crear el usuario", error),
+    onError: (error) => console.log("Error al subir el archivo", error),
   });
 
-  const handlerAtr = async (art, mutation, artId) => {
+  const handlerAtr = async (art, mutation) => {
     try {
       if (art.file) {
         const formDataFile = new FormData();
@@ -105,9 +104,9 @@ const DashboardArticles = ({ children }) => {
         await uploadFile.mutateAsync(formDataFile);
       }
       const article = {
-        _id: artId || null,
+        _id: art._id,
         title: art.title,
-        authorId: artId ? article.authorId : user.Id,
+        authorId: article.authorId ? article.authorId : user.Id,
         subTitle: art.subTitle,
         content: art.content,
         imgRoute: art.file.name || null,
@@ -130,6 +129,7 @@ const DashboardArticles = ({ children }) => {
         queryClient.refetchQueries({ queryKey: ["users"] });
       }, 500);
     },
+    onError: (error) => console.log("Error al elininar el archivo", error),
   });
   const fns = {
     delete: eraseArt,

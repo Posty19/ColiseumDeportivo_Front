@@ -17,7 +17,6 @@ const forms = {
   ],
   notable:[
     { type: "text", name: "name", placeHolder: "Nombre" },
-
     { type: "file", name: "file", placeHolder: "Imagen del personaje" },
   ]
 };
@@ -29,6 +28,7 @@ const Form = ({ children, type, fn, onSubmit, updtElement }) => {
 
   useEffect(() => {
     if (updtElement) {
+      console.log(updtElement);
       setData(updtElement);
     }
     if (type === "article" || type === "coment") {
@@ -63,6 +63,7 @@ const Form = ({ children, type, fn, onSubmit, updtElement }) => {
       {type === "article" || type === "coment" || type === "notable" ? (
         <textarea
           name={txtAreaName}
+          value={formData[txtAreaName]}
           placeholder={
             type === "coment"
               ? "Escriba su comentario"
