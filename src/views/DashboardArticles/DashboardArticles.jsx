@@ -14,6 +14,11 @@ const getArticles = async () => {
   return res.data;
 };
 
+const deleteArticle = async (artId) => {
+  const res = await axiosInstance.delete(`/articles/delete/${artId}`);
+  return res;
+};
+
 const saveArticle = async (article) => {
   article.authorId =
     article.authorId || article.authorId || "6839b39c2f3aa27fd65941d8";
@@ -56,7 +61,7 @@ const DashboardArticles = ({ children }) => {
     stateTime: 0,
   });
   console.log(data);
-  
+
   const queryClient = useQueryClient();
   const newArticle = useMutation({
     mutationFn: saveArticle,
@@ -117,8 +122,17 @@ const DashboardArticles = ({ children }) => {
     }
   };
 
+  const eraseArt = useMutation({
+    mutationFn: deleteArticle,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+      setTimeout(() => {
+        queryClient.refetchQueries({ queryKey: ["users"] });
+      }, 500);
+    },
+  });
   const fns = {
-    //delete: eraseUser,
+    delete: eraseArt,
     update: viewUpdateForm,
   };
 
