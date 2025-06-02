@@ -1,16 +1,23 @@
 import { Outlet } from "react-router-dom";
+
+import { createContext, useState } from "react";
+
 import NavBar from "../NavBar/NavBar";
-import { useEffect } from "react";
+import Footer from '../Footer/Footer';
+
+export const viewContext = createContext();
 
 const HomeLayout = () => {
-    useEffect(()=>{
-        console.log('coso creado');
-    },[]);
+  const [view, setView] = useState(true);
+  
+
   return (
     <div className="homeContainer">
-      <NavBar />
-      <h1>Contenido de prueba</h1>
-      <Outlet />
+      <viewContext.Provider value={{setView}}>
+        {view?<NavBar />:null}
+        <Outlet />
+        {view?<Footer />:null}
+      </viewContext.Provider>
     </div>
   );
 };

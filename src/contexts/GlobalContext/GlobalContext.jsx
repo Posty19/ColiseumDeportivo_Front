@@ -4,7 +4,9 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = ({children})=>{
 
-    const [user,setUser] = useState([]);
+    const [user,setUser] = useState({});
+    const [token,setToken] = useState('');
+    
 
     const saveUser = (usu)=>setUser(usu);
 
@@ -18,7 +20,7 @@ export const GlobalProvider = ({children})=>{
     */
 
     return(
-        <GlobalContext.Provider value={{user,saveUser}}>
+        <GlobalContext.Provider value={{user,saveUser,token,setToken}}>
             {children}
         </GlobalContext.Provider>
     )

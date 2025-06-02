@@ -15,14 +15,29 @@ const forms = {
     { type: "text", name: "subTitle", placeHolder: "Subtítulo" },
     { type: "file", name: "file", placeHolder: "Imagen del artículo" },
   ],
-  notable:[
+  notable: [
     { type: "text", name: "name", placeHolder: "Nombre" },
     { type: "file", name: "file", placeHolder: "Imagen del personaje" },
-  ]
+  ],
+  login: [
+    { type: "email", name: "email", placeHolder: "Correo electrónico" },
+    { type: "password", name: "password", placeHolder: "Contraseña" },
+  ],
+  register: [
+    { type: "text", name: "name", placeHolder: "Nombre" },
+    { type: "text", name: "lastName", placeHolder: "Apellidos" },
+    { type: "email", name: "email", placeHolder: "Correo electrónico" },
+    { type: "password", name: "password", placeHolder: "Contraseña" },
+    {
+      type: "password",
+      name: "password2",
+      placeHolder: "Repita la Contraseña",
+    },
+  ],
 };
 const formsWihtoutCancel = ["contact"];
 
-const Form = ({ children, type, fn, onSubmit, updtElement }) => {
+const Form = ({ children, type, fn, onSubmit, updtElement, changeLogin }) => {
   const [formData, setData] = useState({});
   const [txtAreaName, setTxtAreaName] = useState("");
 
@@ -38,7 +53,10 @@ const Form = ({ children, type, fn, onSubmit, updtElement }) => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-    setData((prev) => ({ ...prev, [name]: e.target.type==='file'?files[0] :value }));
+    setData((prev) => ({
+      ...prev,
+      [name]: e.target.type === "file" ? files[0] : value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -54,7 +72,6 @@ const Form = ({ children, type, fn, onSubmit, updtElement }) => {
           key={fieldAttrs.name}
           value={formData[fieldAttrs.name] || ""}
           change={handleChange}
-          
         >
           {children}
         </Field>
@@ -84,9 +101,31 @@ const Form = ({ children, type, fn, onSubmit, updtElement }) => {
           <option value="user">Usuario comun</option>
         </select>
       ) : null}
-      <Button type={"submit"} txt={"save"} disabled={onSubmit?.isLoading} />
+      <Button
+        type={"submit"}
+        txt={
+          type === "login"
+            ? "Iniciar Sesión"
+            : type === "register"
+            ? "Registro"
+            : "save"
+        }
+        disabled={onSubmit?.isLoading}
+      />
+
       {!formsWihtoutCancel.includes(type) ? (
         <Button type={"cancel"} txt={"cancel"} fn={fn} />
+      ) : null}
+      {type === "login" || type === "register" ? (
+        <Button
+          type={"change"}
+          txt={
+            type === "login"
+              ? "No tienes cuenta, Registrate"
+              : "Vuelta al inicio de sesion"
+          }
+          fn={changeLogin}
+        />
       ) : null}
     </form>
   );

@@ -5,6 +5,7 @@ import { GlobalProvider } from "./contexts/GlobalContext/GlobalContext";
 
 import HomeLayout from "./layouts/HomeLayout/HomeLayout";
 import Home from "./views/Home/Home";
+import Sesion from "./views/Sesion/Sesion";
 
 import DashBoardLayout from "./layouts/DashboardLayout/DasboardLayout";
 import DashboardUsers from "./views/DashboardUsers/DashboardUsers";
@@ -22,6 +23,8 @@ function App() {
           <Routes>
             <Route element={<HomeLayout />}>
               <Route path="/" element={<Home />} />
+              <Route path="/sesion" element={<Sesion />} />
+              
             </Route>
             <Route path="/dashboard" element={<DashBoardLayout />}>
               <Route path="Users" element={<DashboardUsers />} />
