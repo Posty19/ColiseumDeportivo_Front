@@ -10,10 +10,10 @@ const NavBar = () => {
     <nav>
       <ol>
         <li><Link to="/">Inicio</Link></li>
-        <li><Link to="/Articles">Articulos</Link></li>
-        <li><Link to="/Notables">Personajes</Link></li>
-        {!user?<li><Link to="/Sesion">Sesión</Link></li>:null}
-        {user?<li><Link to="/Usuario">Mi Cuenta</Link></li>:null}
+        <li><Link to="/articles">Articulos</Link></li>
+        <li><Link to="/notables">Personajes</Link></li>
+        {!user.id?<li><Link to="/sesion">Sesión</Link></li>:null}
+        {user.id?<li><Link to="/user">Mi Cuenta</Link></li>:null}
         {user.role==='admin'?<li><Link to="/dashboard">dashboard</Link></li>:null}
       </ol>
     </nav>

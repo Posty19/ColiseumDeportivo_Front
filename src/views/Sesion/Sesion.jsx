@@ -21,7 +21,7 @@ const newUser = async (user) => {
 const Sesion = ({ children }) => {
 
   const { setView } = useContext(viewContext);
-  const { user, saveUser } = useContext(GlobalContext);
+  const { saveUser } = useContext(GlobalContext);
   const [viewLogin, setLogin] = useState(true);
   const [message,setMessage] = useState('');
 
@@ -34,9 +34,6 @@ const Sesion = ({ children }) => {
     setView(false);
     return () => setView(true);
   }, [setView]);
-  useEffect(() => {
-    if (user) console.log(user);
-  }, [user]);
   const logIn = useMutation({
     mutationFn: getUser,
     onSuccess: (data) => {

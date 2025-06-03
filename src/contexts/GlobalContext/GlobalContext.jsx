@@ -1,17 +1,19 @@
-import {  createContext, useState,/* useMemo */ } from "react";
+import { createContext, useEffect, useState /* useMemo */ } from "react";
 
 export const GlobalContext = createContext();
 
-export const GlobalProvider = ({children})=>{
+export const GlobalProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    if (localStorage.getItem(user)) setUser(localStorage.getItem(user));
+  });
 
-    const [user,setUser] = useState({});
-    const [token,setToken] = useState('');
-    
+  const saveUser = (usu) => {
+    localStorage.setItem("user", usu);
+    setUser(usu);
+  };
 
-    const saveUser = (usu)=>setUser(usu);
-
-
-    /*
+  /*
         views
         datos del usuario
         lista articulos - titulo subtitulo id
@@ -19,9 +21,9 @@ export const GlobalProvider = ({children})=>{
         Comentarios??
     */
 
-    return(
-        <GlobalContext.Provider value={{user,saveUser,token,setToken}}>
-            {children}
-        </GlobalContext.Provider>
-    )
-}
+  return (
+    <GlobalContext.Provider value={{ user, saveUser }}>
+      {children}
+    </GlobalContext.Provider>
+  );
+};
