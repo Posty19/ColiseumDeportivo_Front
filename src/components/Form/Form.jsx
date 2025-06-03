@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import schemas from "./schemasValidations.js";
 
 import Field from "../Field/Field";
 import Button from "../Button/Button";
+
 
 const forms = {
   user: [
@@ -37,69 +41,73 @@ const forms = {
 };
 const formsWihtoutCancel = ["contact"];
 
-const Form = ({ children, type, fn, onSubmit, updtElement, changeLogin }) => {
-  const [formData, setData] = useState({});
+const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
   const [txtAreaName, setTxtAreaName] = useState("");
+  const schema = schemas[type];
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: schema ? yupResolver(schema) : undefined,
+    defaultValues: updtElement || {},
+  });
 
   useEffect(() => {
-    if (updtElement) {
-      console.log(updtElement);
-      setData(updtElement);
-    }
     if (type === "article" || type === "coment") {
       setTxtAreaName("content");
     } else if (type === "notable") setTxtAreaName("description");
   }, [updtElement, txtAreaName, type]);
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setData((prev) => ({
-      ...prev,
-      [name]: e.target.type === "file" ? files[0] : value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(formData);
+  const submitHandler = (data) => {
+    submit(data)
+    
   };
 
   return (
-    <form action="" onSubmit={handleSubmit} className={type}>
+    <form action="" onSubmit={handleSubmit(submitHandler)} className={type}>
       {forms[type].map((fieldAttrs) => (
         <Field
           atrs={fieldAttrs}
           key={fieldAttrs.name}
-          value={formData[fieldAttrs.name] || ""}
-          change={handleChange}
+          error={errors[fieldAttrs.name]?.message}
+          register={register}
         >
           {children}
         </Field>
       ))}
 
       {type === "article" || type === "coment" || type === "notable" ? (
-        <textarea
-          name={txtAreaName}
-          value={formData[txtAreaName]}
-          placeholder={
-            type === "coment"
-              ? "Escriba su comentario"
-              : "Zona de texto para el contenido"
-          }
-          onChange={handleChange}
-        ></textarea>
+        <>
+          <textarea
+            name={txtAreaName}
+            
+            placeholder={
+              type === "coment"
+                ? "Escriba su comentario"
+                : "Zona de texto para el contenido"
+            }
+            {...register(txtAreaName)}
+          ></textarea>
+          {errors.txtAreaName && <p>{errors[txtAreaName].message}</p>}
+        </>
       ) : null}
 
       {type === "user" ? (
-        <select
-          name="role"
-          onChange={handleChange}
-          value={formData["role"] || ""}
-        >
-          {type === "user" ? <option value="">Selecciona un rol</option> : null}
-          <option value="admin">Admin</option>
-          <option value="user">Usuario comun</option>
-        </select>
+        <>
+          <select
+            name="role"
+            
+          >
+            {type === "user" ? (
+              <option value="">Selecciona un rol</option>
+            ) : null}
+            <option value="admin">Admin</option>
+            <option value="user">Usuario comun</option>
+          </select>
+          {errors.role && <p>{errors['role'].message}</p>}
+        </>
       ) : null}
       <Button
         type={"submit"}
@@ -110,7 +118,7 @@ const Form = ({ children, type, fn, onSubmit, updtElement, changeLogin }) => {
             ? "Registro"
             : "save"
         }
-        disabled={onSubmit?.isLoading}
+        disabled={submit?.isLoading}
       />
 
       {!formsWihtoutCancel.includes(type) ? (

@@ -76,7 +76,7 @@ const Sesion = ({ children }) => {
         <Form
           type="login"
           fn={toHome}
-          onSubmit={(userData) => logIn.mutate(userData)}
+          submit={(userData) => logIn.mutate(userData)}
           changeLogin={changeLogin}
         >
           {children}

@@ -151,7 +151,7 @@ const DashboardArticles = ({ children }) => {
         <Form
           type="article"
           fn={viewNewForm}
-          onSubmit={(articleData) => handlerAtr(articleData, "new")}
+          submit={(articleData) => handlerAtr(articleData, "new")}
         >
           {children}
         </Form>
@@ -160,7 +160,7 @@ const DashboardArticles = ({ children }) => {
           type="article"
           fn={viewUpdateForm}
           updtElement={atrToUpdate}
-          onSubmit={(articleData) => handlerAtr(articleData, "update")}
+          submit={(articleData) => handlerAtr(articleData, "update")}
         >
           {children}
         </Form>

@@ -141,7 +141,7 @@ const DashboardNotables = ({ children }) => {
         <Form
           type="notable"
           fn={viewNewForm}
-          onSubmit={(ntblData) => handlerNtbl(ntblData, "new")}
+          submit={(ntblData) => handlerNtbl(ntblData, "new")}
         >
           {children}
         </Form>
@@ -150,7 +150,7 @@ const DashboardNotables = ({ children }) => {
           type="notable"
           fn={viewUpdateForm}
           updtElement={notableToUpdate}
-          onSubmit={(ntblData) => handlerNtbl(ntblData, "update")}
+          submit={(ntblData) => handlerNtbl(ntblData, "update")}
         >
           {children}
         </Form>

@@ -103,7 +103,7 @@ const DashboardUsers = ({ children }) => {
         <Form
           type="user"
           fn={viewNewForm}
-          onSubmit={(userData) => newUser.mutate(userData)}
+          submit={(userData) => newUser.mutate(userData)}
         >
           {children}
         </Form>
@@ -112,7 +112,7 @@ const DashboardUsers = ({ children }) => {
           type="user"
           updtElement = {userToUpdate}
           fn={viewUpdateForm}
-          onSubmit={(userData) =>{
+          submit={(userData) =>{
             
             changeUser.mutate({
               id: userData._id || userData.id,
