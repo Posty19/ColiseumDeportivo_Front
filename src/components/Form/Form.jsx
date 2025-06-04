@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import schemas from "./schemasValidations.js";
 
 import Field from "../Field/Field";
 import Button from "../Button/Button";
-
 
 const forms = {
   user: [
@@ -42,7 +41,13 @@ const forms = {
 const formsWihtoutCancel = ["contact"];
 
 const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
-  const [txtAreaName, setTxtAreaName] = useState("");
+  const [txtAreaName] = useState(
+    type === "article" || type === "coment"
+      ? "content"
+      : type === "notable"
+      ? "description"
+      : ""
+  );
   const schema = schemas[type];
 
   const {
@@ -54,15 +59,8 @@ const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
     defaultValues: updtElement || {},
   });
 
-  useEffect(() => {
-    if (type === "article" || type === "coment") {
-      setTxtAreaName("content");
-    } else if (type === "notable") setTxtAreaName("description");
-  }, [updtElement, txtAreaName, type]);
-
   const submitHandler = (data) => {
-    submit(data)
-    
+    submit(data);
   };
 
   return (
@@ -78,11 +76,11 @@ const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
         </Field>
       ))}
 
-      {type === "article" || type === "coment" || type === "notable" ? (
+      {(type === "article" || type === "coment" || type === "notable") &&
+      txtAreaName ? (
         <>
           <textarea
             name={txtAreaName}
-            
             placeholder={
               type === "coment"
                 ? "Escriba su comentario"
@@ -90,23 +88,20 @@ const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
             }
             {...register(txtAreaName)}
           ></textarea>
-          {errors.txtAreaName && <p>{errors[txtAreaName].message}</p>}
+          {errors[txtAreaName] && <p>{errors[txtAreaName].message}</p>}
         </>
       ) : null}
 
       {type === "user" ? (
         <>
-          <select
-            name="role"
-            
-          >
+          <select name="role">
             {type === "user" ? (
               <option value="">Selecciona un rol</option>
             ) : null}
             <option value="admin">Admin</option>
             <option value="user">Usuario comun</option>
           </select>
-          {errors.role && <p>{errors['role'].message}</p>}
+          {errors.role && <p>{errors["role"].message}</p>}
         </>
       ) : null}
       <Button

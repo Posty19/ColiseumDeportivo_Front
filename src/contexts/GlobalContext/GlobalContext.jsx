@@ -1,15 +1,13 @@
-import { createContext, useEffect, useState /* useMemo */ } from "react";
+import { createContext, useState /* useMemo */ } from "react";
 
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  useEffect(() => {
-    if (localStorage.getItem(user)) setUser(localStorage.getItem(user));
-  });
+  const [articles,setArticles] = useState([]);
+  const [notables,setNotables] = useState([]);
 
-  const saveUser = (usu) => {
-    localStorage.setItem("user", usu);
+  const saveUser = (usu) => {;
     setUser(usu);
   };
 
@@ -22,7 +20,7 @@ export const GlobalProvider = ({ children }) => {
     */
 
   return (
-    <GlobalContext.Provider value={{ user, saveUser }}>
+    <GlobalContext.Provider value={{ user, saveUser,articles,setArticles,notables,setNotables }}>
       {children}
     </GlobalContext.Provider>
   );

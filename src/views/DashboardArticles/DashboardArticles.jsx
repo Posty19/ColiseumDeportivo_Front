@@ -98,24 +98,27 @@ const DashboardArticles = ({ children }) => {
 
   const handlerAtr = async (art, mutation) => {
     try {
-      if (art.file) {
+      if (art.file instanceof FileList && art.file.length !== 0) {
         const formDataFile = new FormData();
         formDataFile.append("file", art.file);
         await uploadFile.mutateAsync(formDataFile);
       }
+      console.log(art);
       const article = {
         _id: art._id,
         title: art.title,
-        authorId: article.authorId ? article.authorId : user.Id,
+        authorId: art.authorId ? article.authorId : user.Id,
         subTitle: art.subTitle,
         content: art.content,
-        imgRoute: art.file.name || null,
+        imgRoute: art.file.name || '',
       };
       mutation === "new"
         ? newArticle.mutate(article)
         : mutation === "update"
         ? changeArticle.mutate(article)
         : null;
+        setViewNew(false);
+        updateView(false);
     } catch (error) {
       console.log(error);
     }

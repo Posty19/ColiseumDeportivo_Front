@@ -19,8 +19,11 @@ const Notables = ({ children }) => {
   else if (!data.notables) return <p>Sin Contenido por el momento</p>;
   else {
     return data.notables.map((notable) => {
-      <Card
-        img={notable.imgRoute}
+
+      return <Card
+        key={notable._id}
+        id={notable._id}
+        img={notable.photoRoute}
         title={notable.name}
         className="notable"
       >

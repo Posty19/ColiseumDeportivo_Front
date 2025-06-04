@@ -25,12 +25,15 @@ const schemas = {
       .required("El subtitulo es requerido"),
     file: yup
       .mixed()
+      .notRequired()
       .test(
         "fileType",
         "La imagen ha de ser en uno de los formatos: png, jpg, jpeg, webp",
         (value) => {
-          if (!value) return true;
-          return FILE_FORMATS.includes(value.type);
+          if (!value || (value instanceof FileList && value.length === 0))
+            return true;
+          const file = value instanceof FileList ? value[0] : value;
+          return FILE_FORMATS.includes(file?.type);
         }
       ),
     content: yup.string().required("El articulo ha de tener contenido"),
@@ -40,6 +43,7 @@ const schemas = {
     content: yup.string().required("El articulo ha de tener contenido"),
     file: yup
       .mixed()
+      .notRequired()
       .test(
         "fileType",
         "La imagen ha de ser en uno de los formatos: png, jpg, jpeg, webp",
@@ -66,7 +70,9 @@ const schemas = {
     password: yup
       .string()
       .min(8, "La contraseña ha de tener nínimo 8 caracteres"),
-    password2:yup.string().oneOf([yup.ref('password')],'Las contraseñas deben coincidir')
+    password2: yup
+      .string()
+      .oneOf([yup.ref("password")], "Las contraseñas deben coincidir"),
   }),
 };
 

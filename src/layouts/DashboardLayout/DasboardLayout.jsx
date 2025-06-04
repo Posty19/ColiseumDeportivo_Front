@@ -5,10 +5,11 @@ import { GlobalContext } from "../../contexts/GlobalContext/GlobalContext";
 import DashboardNav from "../DashboardNav/DashboardNav";
 
 const DashBoardLayout = () => {
-  const {user} = useContext(GlobalContext);
+  const { user } = useContext(GlobalContext);
   const navigate = useNavigate();
-  useEffect(()=>{
-    !user || user.role !== 'admin'? navigate('/') :null
+
+  useEffect(() => {
+    !user || user.role !== "admin" ? navigate("/") : null;
   });
 
   return (

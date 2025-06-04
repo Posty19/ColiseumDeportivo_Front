@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { Outlet } from "react-router-dom";
 import axiosInstance from "../../api/axiosConfig";
 
 import Card from "../../components/Card/Card";
@@ -18,10 +19,13 @@ const ArticlesList = ({ children }) => {
   else if (error) return <p>Error</p>;
   else if (!data.articles) return <p>Sin Contenido por el momento</p>;
   else {
-    return data.articles.map((article) => {
-      console.log(article.imgRoute);
+    return <>
+    {
+      data.articles.map((article) => {
       return (
         <Card
+          key={article._id}
+          id={article._id}
           img={article.imgRoute}
           title={article.title}
           subtitle={article.subTitle}
@@ -30,7 +34,9 @@ const ArticlesList = ({ children }) => {
           {children}
         </Card>
       );
-    });
+    })
+    }
+    </>
   }
 };
 export default ArticlesList;

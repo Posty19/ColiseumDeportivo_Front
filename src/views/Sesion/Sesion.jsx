@@ -37,6 +37,7 @@ const Sesion = ({ children }) => {
   const logIn = useMutation({
     mutationFn: getUser,
     onSuccess: (data) => {
+      localStorage.setItem("user", JSON.stringify(data.user));
       saveUser(data.user);
       setMessage (
         <ShowMessage
