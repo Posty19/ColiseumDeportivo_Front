@@ -6,7 +6,7 @@ import { GlobalProvider } from "./contexts/GlobalContext/GlobalContext";
 import HomeLayout from "./layouts/HomeLayout/HomeLayout";
 import Home from "./views/Home/Home";
 import Sesion from "./views/Sesion/Sesion";
-import User from "./views/user/User";
+import User from "./views/User/User";
 import ArticlesList from "./views/ArticlesList/ArticlesList";
 import Notables from "./views/Notables/Notables";
 import Article from "./views/Article/Article";
