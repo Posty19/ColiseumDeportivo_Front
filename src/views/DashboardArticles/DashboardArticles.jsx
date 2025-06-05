@@ -21,7 +21,7 @@ const deleteArticle = async (artId) => {
 
 const saveArticle = async (article) => {
   article.authorId =
-    article.authorId || article.authorId || "6839b39c2f3aa27fd65941d8";
+    article.authorId || article.authorId;
   const res = await axiosInstance.post("/articles", article);
   return res;
 };

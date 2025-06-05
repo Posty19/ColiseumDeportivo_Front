@@ -7,7 +7,7 @@ const Card = ({ id, img, title, subtitle, className }) => {
       {img && (
         <Link to={`/${className}/${id}`}>
           <img
-            src={`http://localhost:3000/files/download/${img}`}
+            src={`https://coliseumdeportivo-back.onrender.com/files/download/${img}`}
             crossOrigin="use-credentials"
             alt={title}
           />

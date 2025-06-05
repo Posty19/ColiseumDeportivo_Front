@@ -22,7 +22,7 @@ const Notable = () => {
     <div className="notableDesc">
       <div className="image">
         <img
-          src={`http://localhost:3000/files/download/${data.Notable.photoRoute}`}
+          src={`https://coliseumdeportivo-back.onrender.com/files/download/${data.Notable.photoRoute}`}
           crossOrigin="use-credentials"
           alt={data.Notable.name}
         />

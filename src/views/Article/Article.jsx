@@ -29,7 +29,7 @@ const Article = () => {
         <h3 className="articleTitle">{data.article.title}</h3>
         {data.article.imgRoute ? (
           <img
-            src={`http://localhost:3000/files/download/${data.article.imgRoute}`}
+            src={`https://coliseumdeportivo-back.onrender.com/${data.article.imgRoute}`}
             crossOrigin="use-credentials"
             className="articleImage"
             alt={data.article.title}

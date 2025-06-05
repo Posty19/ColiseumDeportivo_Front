@@ -11,14 +11,6 @@ export const GlobalProvider = ({ children }) => {
     setUser(usu);
   };
 
-  /*
-        views
-        datos del usuario
-        lista articulos - titulo subtitulo id
-        lista personajes - nombre foto id tipo
-        Comentarios??
-    */
-
   return (
     <GlobalContext.Provider value={{ user, saveUser,articles,setArticles,notables,setNotables }}>
       {children}

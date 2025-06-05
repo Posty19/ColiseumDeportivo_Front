@@ -38,7 +38,7 @@ const Home = () => {
         <div className="crewMember">
           <h3>Dirigido por: <br /> Victor Martín Calera</h3>
           <img
-            src={`http://localhost:3000/files/download/Victor_Martin_Calera.jpg`}
+            src={`https://coliseumdeportivo-back.onrender.com/files/download/Victor_Martin_Calera.jpg`}
             alt="Victor Martin Calera"
             crossOrigin="use-credentials"
           />
@@ -46,7 +46,7 @@ const Home = () => {
         <div className="crewMember">
           <h3>Colaborador: <br /> Jésus Pascual Aragoneses</h3>
           <img
-            src={`http://localhost:3000/files/download/Jesus_Pascual_Aragonesesjpg.jpg`}
+            src={`https://coliseumdeportivo-back.onrender.com/files/download/Jesus_Pascual_Aragonesesjpg.jpg`}
             alt="Victor Martin Calera"
             crossOrigin="use-credentials"
           />
@@ -54,7 +54,7 @@ const Home = () => {
         <div className="crewMember">
             <h3>Colaborador: <br /> Carlos Calera Fuente</h3>
           <img
-            src={`http://localhost:3000/files/download/Carlos_Calera_Fuente.jpg`}
+            src={`https://coliseumdeportivo-back.onrender.com/files/download/Carlos_Calera_Fuente.jpg`}
             alt="Victor Martin Calera"
             crossOrigin="use-credentials"
           />
