@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+.footer {
+  background-color: #0d440a;
+  color: #fafafa;
+  width: 100%;
+  min-height: 4rem;
+  font-size: 1.3rem;
+  margin: auto;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+.footer i {
+  font-size: 2rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #fafafa;
+}
+.footer i:hover {
+  background-color: #196115;
+}
+@media screen and (min-width: 750px) {
+  .footer {
+    width: 95%;
+    border-radius: 5px;
+    padding-right: 1rem;
+  }
+}

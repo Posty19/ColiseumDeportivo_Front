@@ -8,6 +8,6 @@ const Button=({type,fn,disabled = false,txt})=>{
         disabled={disabled}
         className={type}
         onClick={fn}
-    >{txt}</button>
+    >&nbsp;{txt}&nbsp;</button>
 }
 export default Button;

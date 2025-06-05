@@ -2,11 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Outlet } from "react-router-dom";
 import axiosInstance from "../../api/axiosConfig";
 
+import './articleList.css'
+
 import Card from "../../components/Card/Card";
 
 const getArticles = async () => {
   const res = await axiosInstance.get("/articles/articles");
-  console.log(res.data);
   return res.data;
 };
 const ArticlesList = ({ children }) => {
@@ -19,7 +20,7 @@ const ArticlesList = ({ children }) => {
   else if (error) return <p>Error</p>;
   else if (!data.articles) return <p>Sin Contenido por el momento</p>;
   else {
-    return <>
+    return <div className="container">
     {
       data.articles.map((article) => {
       return (
@@ -36,7 +37,7 @@ const ArticlesList = ({ children }) => {
       );
     })
     }
-    </>
+    </div>
   }
 };
 export default ArticlesList;

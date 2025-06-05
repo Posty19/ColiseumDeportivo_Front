@@ -1,0 +1,27 @@
+.articleContent{
+    width: 75%;
+    margin: auto;
+    padding-bottom: 1.3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.articleTitle{
+    font-size: 2.4rem;
+    color: #2d4759;
+    text-align: center;
+    margin: 1rem 0;
+}
+.articleSubtitle{
+    font-size: 1.8rem;
+    text-align: center;
+    margin: .7rem 0;
+}
+.articleImage{
+    max-height: 30dvh;
+}
+.articleContent{
+    font-size: 1.5rem;
+
+}

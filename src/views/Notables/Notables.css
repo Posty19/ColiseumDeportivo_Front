@@ -1,0 +1,21 @@
+.sectionTitle{
+    text-align: center;
+    color: #2d4759;
+    font-size: 2rem;
+}
+.notablesList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 90%;
+    margin-top: 1.5rem;
+
+}
+
+@media screen and (min-width: 750px) {
+    .notablesList{
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-evenly;
+    }
+}

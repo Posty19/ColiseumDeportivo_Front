@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import axiosInstance from "../../api/axiosConfig";
 
+import "./Notable.css";
+
 const getNotable = async (id) => {
   const res = await axiosInstance.get(`/notables/notable/${id}`);
   return res.data;
@@ -15,24 +17,22 @@ const Notable = () => {
   });
   if (isLoading) return <p>Cargando...</p>;
   if (error) return <p>Error</p>;
-  const paragraphs = data.Notable.description.split('\n')
+  const paragraphs = data.Notable.description.split("\n");
   return (
     <div className="notable">
-      <div className="imagen">
+      <div className="image">
         <img
           src={`http://localhost:3000/files/download/${data.Notable.photoRoute}`}
           crossOrigin="use-credentials"
           alt={data.Notable.name}
         />
-        <div className="text">
-            <h3>{data.Notable.name}</h3>
-            <div>
-                {
-                    paragraphs.map((paragraph,i)=>
-                        paragraph.trim().length>0?<p key={i}>{paragraph}</p>:null
-                    )
-                }
-            </div>
+      </div>
+      <div className="text">
+        <h3>{data.Notable.name}</h3>
+        <div>
+          {paragraphs.map((paragraph, i) =>
+            paragraph.trim().length > 0 ? <p key={i}>{paragraph}</p> : null
+          )}
         </div>
       </div>
     </div>

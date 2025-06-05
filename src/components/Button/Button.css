@@ -1,14 +1,38 @@
-.update,.save,.submit{
-    background-color: green;
-    transition: background-color .5s;
+button {
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  color: #fafafa;
+  padding: 0.5rem 0;
+  cursor: pointer;
+  transition: background-color 0.5s;
 }
-.update:hover,.save:hover,.submit:hover{
-    background-color: rgb(35, 185, 35)
+button:disabled{
+    text-decoration: line-through;
 }
-.delete,.cancel{
-    background-color: red;
-    transition: background-color .5s;
+.update,
+.save,
+.submit {
+  background-color: #0d440a;
 }
-.delete:hover,.cancel:hover{
-    background-color: rgb(248, 64, 64);
+.update:hover,
+.save:hover,
+.submit:hover {
+  background-color: #196115;
+}
+.delete,
+.cancel,
+.logOut {
+  background-color: #ce0808;
+}
+.delete:hover,
+.cancel:hover,
+.logOut:hover {
+  background-color: #dd3f3f;
+}
+.change {
+  background-color: #c79646;
+}
+.change:hover {
+  background-color: #f1b657;
 }

@@ -1,0 +1,41 @@
+.notable {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  border-radius: 10px;
+  background-color: #f1f1f1;
+  text-align: center;
+  max-height: 25dvh;
+}
+
+.article {
+  margin: 0.7rem auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.article img,
+.notable img {
+  max-width: 100%;
+  max-height: 20dvh;
+  width: auto;
+}
+a {
+  text-decoration: none;
+  color: #2d4759;
+}
+
+@media screen and (min-width: 750px) {
+  .notable {
+    width: 24%;
+  }
+  .article {
+    width: 95%;
+  }
+}

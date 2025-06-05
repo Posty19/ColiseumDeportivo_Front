@@ -13,6 +13,7 @@
     "@hookform/resolvers": "^5.0.1",
     "@tanstack/react-query": "^5.79.0",
     "axios": "^1.9.0",
+    "bootstrap-icons": "^1.13.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",

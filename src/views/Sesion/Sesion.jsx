@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
+import './Sesion.css'
+
 import axiosInstance from "../../api/axiosConfig";
 
 import { GlobalContext } from "../../contexts/GlobalContext/GlobalContext";

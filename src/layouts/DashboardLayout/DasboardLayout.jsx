@@ -5,8 +5,15 @@ import { GlobalContext } from "../../contexts/GlobalContext/GlobalContext";
 import DashboardNav from "../DashboardNav/DashboardNav";
 
 const DashBoardLayout = () => {
-  const { user } = useContext(GlobalContext);
+  const { user,saveUser  } = useContext(GlobalContext);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (!user.email && storedUser) {
+      saveUser(storedUser);
+    }
+  }, [user.email, saveUser]);
 
   useEffect(() => {
     !user || user.role !== "admin" ? navigate("/") : null;

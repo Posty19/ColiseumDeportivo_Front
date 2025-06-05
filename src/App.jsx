@@ -17,7 +17,7 @@ import DashboardUsers from "./views/DashboardUsers/DashboardUsers";
 import DashboardArticles from "./views/DashboardArticles/DashboardArticles";
 import DashboardNotables from "./views/DashboardNotables/DashboardNotables";
 
-import "./App.css";
+//import "./App.css";
 
 const queryClient = new QueryClient();
 function App() {

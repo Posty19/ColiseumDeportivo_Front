@@ -1,3 +1,6 @@
+
+import './Field.css'
+
 const Field = ({ atrs, register, error }) => {
   //const isFile = atrs.type === "file";
   return (
