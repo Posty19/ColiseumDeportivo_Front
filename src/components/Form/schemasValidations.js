@@ -9,7 +9,7 @@ const schemas = {
       .string()
       .email("El email no es válido")
       .required("El email es requerido"),
-    passwor: yup
+    password: yup
       .string()
       .min(8, "La contraseña ha de tener nínimo 8 caracteres"),
     role: yup.string().required("seleccione un rol valido"),
@@ -40,7 +40,6 @@ const schemas = {
   }),
   notable: yup.object().shape({
     name: yup.string().required("El nombre es obligatorio"),
-    content: yup.string().required("El articulo ha de tener contenido"),
     file: yup
       .mixed()
       .notRequired()
@@ -48,19 +47,20 @@ const schemas = {
         "fileType",
         "La imagen ha de ser en uno de los formatos: png, jpg, jpeg, webp",
         (value) => {
-          if (!value) return true;
-          return FILE_FORMATS.includes(value.type);
+          if (value.length<1) return true;
+          return FILE_FORMATS.includes(value[0].type);
         }
       ),
-    login: yup.object().shape({
-      email: yup
-        .string()
-        .email("El email no es válido")
-        .required("El email es requerido"),
-      passwor: yup
-        .string()
-        .min(8, "La contraseña ha de tener nínimo 8 caracteres"),
-    }),
+    description: yup.string().required("El personaje ha de tener descripcion"),
+  }),
+  login: yup.object().shape({
+    email: yup
+      .string()
+      .email("El email no es válido")
+      .required("El email es requerido"),
+    password: yup
+      .string()
+      .min(8, "La contraseña ha de tener nínimo 8 caracteres"),
   }),
   register: yup.object().shape({
     email: yup

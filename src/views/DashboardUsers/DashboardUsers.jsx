@@ -102,6 +102,7 @@ const DashboardUsers = ({ children }) => {
       {newForm ? (
         <Form
           type="user"
+          className={'dform'}
           fn={viewNewForm}
           submit={(userData) => newUser.mutate(userData)}
         >
@@ -111,6 +112,7 @@ const DashboardUsers = ({ children }) => {
         <Form
           type="user"
           updtElement = {userToUpdate}
+          className={'dform'}
           fn={viewUpdateForm}
           submit={(userData) =>{
             

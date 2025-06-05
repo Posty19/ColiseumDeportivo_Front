@@ -30,9 +30,9 @@ button:disabled{
 .logOut:hover {
   background-color: #dd3f3f;
 }
-.change {
+.change,.new {
   background-color: #c79646;
 }
-.change:hover {
+.change:hover,.new:hover {
   background-color: #f1b657;
 }

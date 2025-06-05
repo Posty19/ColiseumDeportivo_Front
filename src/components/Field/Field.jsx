@@ -13,7 +13,7 @@ const Field = ({ atrs, register, error }) => {
         name={atrs.name}
         {...register(atrs.name)}
       />
-      {error && <p>{error}</p>}
+      {error && <p className='error'>{error}</p>}
     </div>
   );
 };

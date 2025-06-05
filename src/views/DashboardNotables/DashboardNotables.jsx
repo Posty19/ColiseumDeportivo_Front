@@ -60,7 +60,7 @@ const DashboardNotables = ({ children }) => {
       setTimeout(() => {
         queryClient.refetchQueries({ queryKey: ["notables"] });
         setViewNew(false);
-      }, 5000);
+      }, 500);
     },
     onError: (error) => console.log("Error al crear al perjonaje", error),
   });
@@ -72,7 +72,7 @@ const DashboardNotables = ({ children }) => {
       setTimeout(() => {
         queryClient.refetchQueries({ queryKey: ["notables"] });
         updateView(false);
-      }, 5000);
+      }, 500);
     },
     onError: (error) => console.log("Error al actualizar al personaje", error),
   });
@@ -93,13 +93,14 @@ const DashboardNotables = ({ children }) => {
       queryClient.invalidateQueries({ queryKey: ["notables"] });
       setTimeout(() => {
         queryClient.refetchQueries({ queryKey: ["notables"] });
-      }, 5000);
+      }, 500);
     },
     onError: (error) => console.log("Error al eliminar al personaje", error),
   });
 
   const handlerNtbl = async (ntbl, mutation) => {
     try {
+      console.log(ntbl);
       if (ntbl.file) {
         const formDataFile = new FormData();
         formDataFile.append("file", ntbl.file);
@@ -141,6 +142,7 @@ const DashboardNotables = ({ children }) => {
         <Form
           type="notable"
           fn={viewNewForm}
+          className={'dform'}
           submit={(ntblData) => handlerNtbl(ntblData, "new")}
         >
           {children}
@@ -149,8 +151,11 @@ const DashboardNotables = ({ children }) => {
         <Form
           type="notable"
           fn={viewUpdateForm}
+          className={'dform'}
           updtElement={notableToUpdate}
-          submit={(ntblData) => handlerNtbl(ntblData, "update")}
+          submit={(ntblData) =>{ 
+            console.log(ntblData);
+            handlerNtbl(ntblData, "update")}}
         >
           {children}
         </Form>

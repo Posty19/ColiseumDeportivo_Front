@@ -40,7 +40,7 @@ const forms = {
 };
 const formsWihtoutCancel = ["contact"];
 
-const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
+const Form = ({ children, type, className, fn, submit, updtElement, changeLogin }) => {
   const [txtAreaName] = useState(
     type === "article" || type === "coment"
       ? "content"
@@ -59,12 +59,15 @@ const Form = ({ children, type, fn, submit, updtElement, changeLogin }) => {
     defaultValues: updtElement || {},
   });
 
-  const submitHandler = (data) => {
+  const submitHandler = (data,e) => {
+     const fileInput = e.target.querySelector('input[name="file"]');
+     const file = fileInput?.files?.[0];
+     data.file = file
     submit(data);
   };
 
   return (
-    <form action="" onSubmit={handleSubmit(submitHandler)} className={type}>
+    <form action="" onSubmit={handleSubmit((data,e)=>submitHandler(data,e))} className={className}>
       {forms[type].map((fieldAttrs) => (
         <Field
           atrs={fieldAttrs}

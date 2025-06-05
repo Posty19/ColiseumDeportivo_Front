@@ -1,6 +1,8 @@
 import { useContext, useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import './DasboardLayout.css';
+
 import { GlobalContext } from "../../contexts/GlobalContext/GlobalContext";
 import DashboardNav from "../DashboardNav/DashboardNav";
 
@@ -22,7 +24,9 @@ const DashBoardLayout = () => {
   return (
     <div className="dashboardContainer">
       <DashboardNav />
-      <Outlet />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -154,6 +154,7 @@ const DashboardArticles = ({ children }) => {
         <Form
           type="article"
           fn={viewNewForm}
+          className={'dform'}
           submit={(articleData) => handlerAtr(articleData, "new")}
         >
           {children}
@@ -163,6 +164,7 @@ const DashboardArticles = ({ children }) => {
           type="article"
           fn={viewUpdateForm}
           updtElement={atrToUpdate}
+          className={'dform'}
           submit={(articleData) => handlerAtr(articleData, "update")}
         >
           {children}

@@ -1,0 +1,70 @@
+.dashboardContainer {
+  display: flex;
+  flex-direction: row;
+  background-color: #f1f1f1;
+}
+.dashboardContainer nav {
+  min-width: 20%;
+}
+.dashboardContainer ul {
+  list-style: none;
+  font-size: 1.4rem;
+  display: flex;
+  min-height: 50dvh;
+  max-height: 97dvh;
+  margin: 2rem;
+  padding: 0;
+  border-radius: 10px;
+  background-color: #fafafa;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.dashboardContainer li {
+  min-height: 10dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dashboardContainer a:hover {
+  text-decoration: underline;
+}
+.dashboardContainer div {
+  margin: 2rem;
+  background-color: #fafafa;
+  min-width: 60dvw;
+  padding: 2rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dashboardContainer table{
+    margin-top: 2rem;
+}
+.dashboardContainer td{
+    padding: .4rem;
+}
+.dashboardContainer table,.dashboardContainer tr, .dashboardContainer td{
+    border: 1px solid #2d4759;
+    border-collapse: collapse ;
+}
+.dform{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+}
+.formField{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.dform textarea{
+    resize: none;
+    font-size: 1.4rem;
+    border-radius: 5px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    width: 100%;
+    height: 60dvh;
+}
