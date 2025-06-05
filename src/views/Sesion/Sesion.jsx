@@ -56,6 +56,7 @@ const Sesion = ({ children }) => {
       }, 2000);
     },
     onError: (error) => {
+      console.log(error);
       setMessage(
         <ShowMessage
           clas={"errorMsg"}
