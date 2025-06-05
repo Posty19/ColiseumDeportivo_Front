@@ -6,6 +6,7 @@ const Home = () => {
         <img
           src="https://coliseumdeportivo-back.onrender.com/files/download/Estadio_Municipal_La_Albuera.jpg"
           alt="Estadio de la sego"
+          crossOrigin="use-credentials"
           className="fontPageImg"
         />
         <figcaption className="imgOrigin">
@@ -36,7 +37,9 @@ const Home = () => {
 
       <div className="crew">
         <div className="crewMember">
-          <h3>Dirigido por: <br /> Victor Martín Calera</h3>
+          <h3>
+            Dirigido por: <br /> Victor Martín Calera
+          </h3>
           <img
             src={`https://coliseumdeportivo-back.onrender.com/files/download/Victor_Martin_Calera.jpg`}
             alt="Victor Martin Calera"
@@ -44,7 +47,9 @@ const Home = () => {
           />
         </div>
         <div className="crewMember">
-          <h3>Colaborador: <br /> Jésus Pascual Aragoneses</h3>
+          <h3>
+            Colaborador: <br /> Jésus Pascual Aragoneses
+          </h3>
           <img
             src={`https://coliseumdeportivo-back.onrender.com/files/download/Jesus_Pascual_Aragonesesjpg.jpg`}
             alt="Victor Martin Calera"
@@ -52,7 +57,9 @@ const Home = () => {
           />
         </div>
         <div className="crewMember">
-            <h3>Colaborador: <br /> Carlos Calera Fuente</h3>
+          <h3>
+            Colaborador: <br /> Carlos Calera Fuente
+          </h3>
           <img
             src={`https://coliseumdeportivo-back.onrender.com/files/download/Carlos_Calera_Fuente.jpg`}
             alt="Victor Martin Calera"
