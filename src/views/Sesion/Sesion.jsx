@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
-import './Sesion.css'
+import "./Sesion.css";
 
 import axiosInstance from "../../api/axiosConfig";
 
@@ -21,11 +21,14 @@ const newUser = async (user) => {
 };
 
 const Sesion = ({ children }) => {
-
   const { setView } = useContext(viewContext);
   const { saveUser } = useContext(GlobalContext);
   const [viewLogin, setLogin] = useState(true);
-  const [message,setMessage] = useState('');
+  const [message, setMessage] = useState("");
+
+  useEffect(()=>{
+    setMessage('');
+  },[viewLogin])
 
   const changeLogin = () => setLogin((prev) => !prev);
 
@@ -39,11 +42,12 @@ const Sesion = ({ children }) => {
   const logIn = useMutation({
     mutationFn: getUser,
     onSuccess: (data) => {
+      //console.log(data);
       localStorage.setItem("user", JSON.stringify(data.user));
       saveUser(data.user);
-      setMessage (
+      setMessage(
         <ShowMessage
-          clas={"succed"}
+          clas={"succedMsg"}
           txt={`Hola ${data.user.name} Su inicio de sesion se ha realizado con exito`}
         />
       );
@@ -51,7 +55,14 @@ const Sesion = ({ children }) => {
         toHome();
       }, 2000);
     },
-    onError: (error) => console.log(error),
+    onError: (error) => {
+      setMessage(
+        <ShowMessage
+          clas={"errorMsg"}
+          txt={`El usuario o la contraseña no son ccorrectos`}
+        />
+      );
+    },
   });
   const register = useMutation({
     mutationFn: newUser,
@@ -59,7 +70,7 @@ const Sesion = ({ children }) => {
       saveUser(data.user);
       setMessage(
         <ShowMessage
-          clas={"succed"}
+          clas={"succedMsg"}
           txt={`Hola ${data.user.name} Su inicio de sesion se ha realizado con exito`}
         />
       );
@@ -67,7 +78,16 @@ const Sesion = ({ children }) => {
         toHome();
       }, 2000);
     },
-    onError: (error) => console.log(error),
+    onError: (error) => {//console.log(error)
+      let mssg;
+      error.response.data.error.code === 11000? mssg = 'El correo electronico ya esta en uso':mssg = 'Ha ocurrido un error, por favor vuelva a intentarlo'
+      setMessage(
+        <ShowMessage
+          clas={"errorMsg"}
+          txt={mssg}
+        />
+      );
+    },
   });
 
   return (
@@ -85,7 +105,7 @@ const Sesion = ({ children }) => {
         <Form
           type="register"
           fn={toHome}
-          onSubmit={(userData) => register.mutate(userData)}
+          submit={(userData) => register.mutate(userData)}
           changeLogin={changeLogin}
         >
           {children}

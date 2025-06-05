@@ -1,0 +1,20 @@
+
+.succedMsg,.errorMsg{
+    position: absolute;
+    bottom: 0;
+    font-size: 1.8rem;
+    transition: all .5s;
+    padding: .5rem;
+    border-radius: 10px;
+    color: #fafafa;
+}
+
+
+.succedMsg{
+    background-color: #0d440a;
+    
+}
+
+.errorMsg{
+    background-color: #ce0808;
+}

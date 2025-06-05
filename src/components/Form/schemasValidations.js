@@ -63,6 +63,8 @@ const schemas = {
       .min(8, "La contraseña ha de tener nínimo 8 caracteres"),
   }),
   register: yup.object().shape({
+    name: yup.string().required("El nombre es obligatorio"),
+    lastName: yup.string().required("El apellido es obligatorio"),
     email: yup
       .string()
       .email("El email no es válido")
