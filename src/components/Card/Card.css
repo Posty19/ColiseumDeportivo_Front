@@ -1,6 +1,7 @@
 .notable {
   display: flex;
   flex-direction: column;
+  padding: .4rem;
   width: 55%;
   border-radius: 10px;
   background-color: #f1f1f1;

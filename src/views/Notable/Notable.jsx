@@ -19,7 +19,7 @@ const Notable = () => {
   if (error) return <p>Error</p>;
   const paragraphs = data.Notable.description.split("\n");
   return (
-    <div className="notable">
+    <div className="notableDesc">
       <div className="image">
         <img
           src={`http://localhost:3000/files/download/${data.Notable.photoRoute}`}
@@ -28,8 +28,8 @@ const Notable = () => {
         />
       </div>
       <div className="text">
-        <h3>{data.Notable.name}</h3>
-        <div>
+        <h3 className="notableNameTitle">{data.Notable.name}</h3>
+        <div className="NotableDescription">
           {paragraphs.map((paragraph, i) =>
             paragraph.trim().length > 0 ? <p key={i}>{paragraph}</p> : null
           )}
