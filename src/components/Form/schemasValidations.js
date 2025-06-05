@@ -12,7 +12,7 @@ const schemas = {
     password: yup
       .string()
       .min(8, "La contraseña ha de tener nínimo 8 caracteres"),
-    role: yup.string().required("seleccione un rol valido"),
+    //role: yup.string().required("seleccione un rol valido"),
   }),
   article: yup.object().shape({
     title: yup
