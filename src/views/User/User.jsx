@@ -6,8 +6,8 @@ import './User.css'
 import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 
-const User = ({ children }) => {
-  const { user,saveUser } = useContext(GlobalContext);
+const User = () => {
+  const { saveUser } = useContext(GlobalContext);
   const navigate = useNavigate();
   const logOut = () => {
     localStorage.removeItem("user");
