@@ -4,7 +4,7 @@ const Home = () => {
     <div className="container">
       <figure className="fontPageFigure">
         <img
-          src="../../../public/Estadio_Municipal_La_Albuera.jpg"
+          src="../../assets/Estadio_Municipal_La_Albuera.jpg"
           alt="Estadio de la sego"
           className="fontPageImg"
         />
