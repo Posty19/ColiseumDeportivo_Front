@@ -9,7 +9,7 @@ import axiosInstance from "../../api/axiosConfig";
 import { GlobalContext } from "../../contexts/GlobalContext/GlobalContext";
 import { viewContext } from "../../layouts/HomeLayout/HomeLayout";
 import Form from "../../components/Form/Form";
-import ShowMessage from "../../components/showMessage/ShowMessage";
+import ShowMessage from "../../components/ShowMessage/ShowMessage";
 
 const getUser = async (user) => {
   const res = await axiosInstance.post("/auth/login", user);
