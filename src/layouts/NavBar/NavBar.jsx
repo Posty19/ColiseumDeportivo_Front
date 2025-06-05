@@ -11,7 +11,7 @@ const NavBar = () => {
   const {user} = useContext(GlobalContext);
   return (
     <div className="nav-container">
-      <img src="../../assets/1.png" alt="Coliseum deportivo" className="coliseumDeportivo-logo" />
+      <img src="https://coliseumdeportivo-back.onrender.com/files/download/1.png" alt="Coliseum deportivo" className="coliseumDeportivo-logo" />
       <nav className="navBar">
         <input type="checkbox" name="open-menu" id="open-menu" className="header-checkbox" />
         <label htmlFor="open-menu" className="menu-icon">
